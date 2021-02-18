@@ -20,17 +20,25 @@ calBody.addEventListener("click",(event)=>{
     inputedPin+=''+clickedNum;
     inputedPinShow.value = inputedPin;
 })
+const Matched = document.getElementById("matched");
+const didntMatch = document.getElementById("didnt-match");
 const checkingMatch = ()=>{
-    if (genePin === inputedPin) {
-        const Matched = document.getElementById("matched");
+    if (genePin === inputedPin && genePin!='') {
+        
         Matched.style.display = "block";
+        didntMatch.style.display = "none";
         inputedPinShow.value = "";
         inputedPin ="";
     } else {
+        const tryleft = document.getElementById("try-left").innerText;
+        if(tryleft<2)
+        {
+            submitBtn.disabled = true;
+        }
         document.getElementById("try-left").innerText = document.getElementById("try-left").innerText-1;
-        const didntMatch = document.getElementById("didnt-match");
         console.log(didntMatch);
         didntMatch.style.display = "block";
+        Matched.style.display = "none";
         inputedPinShow.value = "";
         inputedPin ="";
     }
